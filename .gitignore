@@ -1,0 +1,6 @@
+.idea
+.env
+
+inscriptions/
+qrcodes/
+template.pdf
