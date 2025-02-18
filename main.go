@@ -17,6 +17,7 @@ func main() {
 		var payload InscriptionPayload
 		err = context.BindJSON(&payload) // the payload can be customized in watermarkData.go
 		if err != nil {
+			log.Println(err)
 			context.JSON(400, gin.H{"error": err.Error()})
 			return
 		}
@@ -24,6 +25,7 @@ func main() {
 		var generatedPath *string
 		generatedPath, err = generatePdf(&payload)
 		if err != nil {
+			log.Println(err)
 			context.JSON(500, gin.H{"error": err.Error()})
 			return
 		}

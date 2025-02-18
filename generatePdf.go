@@ -56,7 +56,8 @@ func generatePdf(payload *InscriptionPayload) (*string, error) {
 	}
 
 	enc := qrcode.NewQRCodeWriter()
-	img, err := enc.Encode(payload.Runner.CheckoutID, gozxing.BarcodeFormat_QR_CODE, 256, 256, nil)
+	hints := map[gozxing.EncodeHintType]interface{}{gozxing.EncodeHintType_MARGIN: 0}
+	img, err := enc.Encode(payload.Runner.QRCode, gozxing.BarcodeFormat_QR_CODE, 220, 220, hints)
 	if err != nil {
 		return nil, err
 	}
@@ -74,7 +75,7 @@ func generatePdf(payload *InscriptionPayload) (*string, error) {
 	}
 
 	pages := []string{"1"}
-	err = pdfcpu.AddImageWatermarksFile(inscriptionPath, inscriptionPath, pages, true, qrcodePath, "rot:0, scale:0.6 abs, pos:tl, off:70 -50", nil)
+	err = pdfcpu.AddImageWatermarksFile(inscriptionPath, inscriptionPath, pages, true, qrcodePath, "rot:0, scale:0.6 abs, pos:tl, off:82 -52", nil)
 	if err != nil {
 		return nil, err
 	}

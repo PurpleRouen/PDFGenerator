@@ -12,6 +12,7 @@ type RunnerPayload struct {
 	RegisteredAt  string `json:"registeredAt"`
 	Email         string `json:"email"`
 	PPSIdentifier string `json:"ppsIdentifier"`
+	QRCode        string `json:"qrCode"`
 	CheckoutID    string `json:"checkoutId"`
 }
 
